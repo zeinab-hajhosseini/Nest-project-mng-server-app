@@ -16,7 +16,7 @@ async function bootstrap() {
 
   SwaggerModule.setup('/doc', app, document);
 
-  await app.listen(3000, ()=>{
+  await app.listen(3000, () => {
     console.log('Server Run On Port 3000');
   });
 }
