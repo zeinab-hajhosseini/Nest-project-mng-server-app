@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, ParseIntPipe, Patch, Post } from '@nestjs/common';
 import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { Employee } from './entities/employee.entity';
 import { EmployeesService } from './employees.service';
@@ -19,7 +19,7 @@ export class EmployeesController {
     @ApiOkResponse({ type: Employee })
     @ApiNotFoundResponse()
     @Get(':id')
-    getEmployeeById(@Param('id') id: number): any {
+    getEmployeeById(@Param('id', ParseIntPipe) id: number): any {
         return `Get employee with id: ${id}`;
 
     }
@@ -34,14 +34,14 @@ export class EmployeesController {
     @ApiOkResponse({ type: Employee })
     @ApiNotFoundResponse()
     @Patch(':id')
-    updateEmployee(@Param('id') id : number, @Body() body: UpdateEmployeeDto): any {
+    updateEmployee(@Param('id', ParseIntPipe) id: number, @Body() body: UpdateEmployeeDto): any {
         return 'Update employees';
     }
-  
+
     @ApiOkResponse({ type: Employee })
     @ApiNotFoundResponse()
     @Delete(':id')
-    deleteUser(@Param('id') id: number): any {
+    deleteUser(@Param('id', ParseIntPipe) id: number): any {
         return 'Delete employees';
 
     }
